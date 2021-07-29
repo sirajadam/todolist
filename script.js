@@ -12,7 +12,7 @@ submitBtn.addEventListener("click", function (e) {
   const alert = document.querySelector(".alert");
 
   const taskHtml = `<div class="row task">
-  <h4 class="task-name">${taskInput}</h4>
+  <span class="task-name">${taskInput}</span>
   <button type="submit" class="btn delete-btn">
   <i class="uil uil-trash-alt"></i>
   </button>
@@ -32,15 +32,28 @@ submitBtn.addEventListener("click", function (e) {
   document.querySelector(".form-input").value = "";
 
   // ============ Completing Task ============
+  // const task = document.querySelectorAll(".task");
+  // task.forEach((task) =>
+  //   task.addEventListener("click", function (e) {
+  //     this.classList.add("completed");
+  //     // Check for bug: some elements don't click or click 3-4 times
+  //   })
+  // );
   const task = document.querySelectorAll(".task-name");
-  task.forEach((task) =>
-    task.addEventListener("click", function (e) {
-      e.preventDefault();
-      console.log(task);
-      this.classList.toggle("completed");
-      // Check for bug: some elements don't click or click 3-4 times
-    })
+  task.forEach(
+    (task) =>
+      (task.onclick = function () {
+        this.classList.toggle("completed");
+      })
   );
+  // Check for bug: some elements don't click or click 3-4 times
+
+  // var tasks = document.querySelectorAll(".task");
+  // for (var i = 0; i < tasks.length; i++) {
+  //   tasks[i].onclick = function () {
+  //     this.classList.toggle("completed");
+  //   };
+  // }
 
   //   Try using event propogation if fit
 
