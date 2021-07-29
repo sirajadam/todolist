@@ -32,13 +32,6 @@ submitBtn.addEventListener("click", function (e) {
   document.querySelector(".form-input").value = "";
 
   // ============ Completing Task ============
-  // const task = document.querySelectorAll(".task");
-  // task.forEach((task) =>
-  //   task.addEventListener("click", function (e) {
-  //     this.classList.add("completed");
-  //     // Check for bug: some elements don't click or click 3-4 times
-  //   })
-  // );
   const task = document.querySelectorAll(".task-name");
   task.forEach(
     (task) =>
@@ -47,13 +40,7 @@ submitBtn.addEventListener("click", function (e) {
       })
   );
   // Check for bug: some elements don't click or click 3-4 times
-
-  // var tasks = document.querySelectorAll(".task");
-  // for (var i = 0; i < tasks.length; i++) {
-  //   tasks[i].onclick = function () {
-  //     this.classList.toggle("completed");
-  //   };
-  // }
+  // Fixed the bug by using onclick. For some reason it worked. Find out why.
 
   //   Try using event propogation if fit
 
