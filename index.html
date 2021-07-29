@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolist</title>
 
-    <!-- styles css  -->
-    <link rel="stylesheet" href="./styles.css">
+    <!-- unicons -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
 
-</head>
-<body>
-    <div class="task-panel-container">
-        <div class="task-panel">
-            <input
-          type="text"
-          name="name"
-          class="form-input"
-          placeholder="To-do"
-        />
-        <button type="submit" class="btn submit-btn">submit</button>
+    <!-- styles css  -->
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- javascript -->
+  </head>
+  <body>
+    <section class="container">
+      <!-- task panel -->
+      <div class="row task-panel">
+        <div class="form-control">
+          <!-- add task -->
+          <input
+            type="text"
+            name="name"
+            class="form-input"
+            placeholder="To-do..."
+          />
+          <!-- submit task -->
+          <button type="submit" class="btn submit-btn">add</button>
         </div>
-    </div>
-</body>
+        <p class="alert">hello</p>
+      </div>
+
+      <!-- task container -->
+      <div class="row task-container"></div>
+    </section>
+    <script src="script.js"></script>
+  </body>
 </html>
