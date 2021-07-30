@@ -36,8 +36,41 @@
       </div>
 
       <!-- task container -->
-      <div class="row task-container"></div>
+      <div class="row task-container">
+        <!-- <div class="row task">
+          <span class="task-name">hello</span>
+          <div class="btn-container">
+            <button type="submit" class="btn edit-btn">
+              <i class="uil uil-edit"></i>
+            </button>
+            <button type="submit" class="btn delete-btn">
+              <i class="uil uil-trash-alt"></i>
+            </button>
+          </div>
+        </div> -->
+      </div>
+
+      <!-- modal -->
     </section>
+    <div class="modal hidden">
+      <button class="btn btn-close-modal">
+        <i class="uil uil-times"></i>
+      </button>
+      <h2>edit task</h2>
+      <form class="modal-form">
+        <label>Todo</label>
+        <input
+          type="text"
+          name="task"
+          id="modal-task"
+          class="form-input task-edit-input"
+        />
+        <label>completed</label>
+        <input type="checkbox" name="completed" class="task-edit-completed" />
+        <button class="btn update-btn">update</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
     <script src="script.js"></script>
   </body>
 </html>

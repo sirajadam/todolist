@@ -1,7 +1,12 @@
 "use strict";
 
 const submitBtn = document.querySelector(".submit-btn");
+const updateBtn = document.querySelector(".update-btn");
 const taskContainer = document.querySelector(".task-container");
+const overlay = document.querySelector(".overlay");
+const editModal = document.querySelector(".modal");
+const editTaskInput = document.querySelector(".task-edit-input");
+const editTaskCompleted = document.querySelector(".task-edit-completed");
 
 // initialize localStorage
 
@@ -38,20 +43,36 @@ function addTodo(todo) {
   // ============ Completing Task ============
   completeTask();
 
+  // ============ Editing Task ============
+  editTask();
+
   // ============ Deleting Task ============
   deleteTask();
+
+  // ============ Close Modal ============
+  const btnCloseModal = document.querySelector(".btn-close-modal");
+
+  btnCloseModal.addEventListener("click", function (e) {
+    e.preventDefault();
+    closeEditModal();
+  });
 }
 
 function createTodoEl(taskName, completedStatus) {
   const alert = document.querySelector(".alert");
-
-  const taskHtml = `<div class="row task">
-  <span class="task-name ${
-    completedStatus ? "completed" : ""
-  }">${taskName}</span>
-  <button type="submit" class="btn delete-btn">
-  <i class="uil uil-trash-alt"></i>
-  </button>
+  const taskHtml = `
+  <div class="row task">
+    <span class="task-name ${
+      completedStatus ? "completed" : ""
+    }">${taskName}</span>
+    <div class="btn-container">
+      <button type="submit" class="btn edit-btn">
+        <i class="uil uil-edit"></i>
+      </button>
+      <button type="submit" class="btn delete-btn">
+        <i class="uil uil-trash-alt"></i>
+      </button>
+    </div>
   </div>`;
 
   if (taskName.length == 0) {
@@ -65,13 +86,40 @@ function createTodoEl(taskName, completedStatus) {
   }
 }
 
+function editTask() {
+  const editBtn = document.querySelectorAll(".edit-btn");
+
+  editBtn.forEach((todo) =>
+    todo.addEventListener("click", function (e) {
+      let task = todo.parentNode.parentNode.firstElementChild;
+      let taskText = task.innerHTML;
+      let completed = task.classList.contains("completed");
+      editTaskCompleted.checked = completed;
+      editTaskInput.value = taskText;
+      openEditModal();
+
+      updateBtn.onclick = function (e) {
+        e.preventDefault();
+        // updating task
+        task.textContent = editTaskInput.value;
+        editTaskCompleted.checked === completed
+          ? null
+          : task.classList.toggle("completed");
+
+        updateLocalStorage();
+        closeEditModal();
+      };
+    })
+  );
+}
+
 function deleteTask() {
   const delBtn = document.querySelectorAll(".delete-btn");
 
   delBtn.forEach((task) =>
     task.addEventListener("click", function (e) {
       e.preventDefault();
-      this.parentNode.remove();
+      this.parentNode.parentNode.remove();
       updateLocalStorage();
     })
   );
@@ -86,6 +134,16 @@ function completeTask() {
         updateLocalStorage();
       })
   );
+}
+
+function openEditModal() {
+  editModal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+
+function closeEditModal() {
+  editModal.classList.add("hidden");
+  overlay.classList.add("hidden");
 }
 
 function updateLocalStorage() {
