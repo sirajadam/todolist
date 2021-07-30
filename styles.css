@@ -174,6 +174,11 @@ body {
 
 .task-panel {
   background: var(--grey-0);
+  transition: var(--transition);
+}
+
+.task-panel:hover {
+  transform: scale(1.03);
 }
 
 .task-container {
@@ -198,11 +203,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: var(--transition);
+}
+
+.task:hover {
+  transform: scale(1.03);
 }
 
 .task-name {
   cursor: pointer;
   width: 100%;
+  /* increase area of commpleted task click */
+  height: 50%;
+  display: flex;
+  align-items: center;
   color: var(--grey-7);
   font-weight: 400;
 }
